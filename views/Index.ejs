@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Mart</title>
+    <style>
+        body{
+            text-align: center;
+            margin: 0;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            margin: 20px auto;
+            gap: 1rem;
+            padding: 40px;
+        
+        }
+
+        .container div{
+            border: black 2px solid;
+            /* background-color: gainsboro; */
+            background-color: grey;
+            padding: 20px;
+        }
+        .navbar{
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 10px;
+            color: white;
+            background-color: black;
+            position:fixed;
+            width: 100%;
+            top: 0;
+        }
+        .left{
+            display: flex;
+            align-items: center;
+        }
+        .left input{
+            margin-left:20px;
+            height: 20px;
+        }
+        .right{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            align-content: center;
+        }
+        .right h2{
+            margin-right:10px;
+            cursor: pointer;
+        }
+        img{
+            height: 200px;
+            width: 200px;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="left">
+            <h1 ><a style="color:aliceblue" href="/product">E-Mart</a></h1>
+            <form action="/product" method="post">
+                <input type="text" name="Val" placeholder="Search Product">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <div class="right">
+            <h2>🪷EN</h2>
+            <h2>About</h2>
+            <h2>Cart</h2>
+            <h2>Sign in</h2>
+        </div>
+    </div>
+    <h1 style="margin-top: 140px;">
+        <%= product%>
+    </h1>
+    <section>
+        <div class="container">
+            
+            <% for(let item of products){%>
+                <div>
+                <img src=<%=item.thumbnail %> />
+
+                <h2>
+                    <%= item.title%>
+                </h2>
+            
+                <h2>
+                    $<%= item.price%>
+                </h2>
+
+                <% id="/product/"+item._id %>
+
+                <button><a href=<%=id%>>Buy</a></button>
+                <button >Add to cart</button>
+                </div>
+                <%}%>
+
+        </div>
+
+        
+    </section>
+</body>
+
+</html>
